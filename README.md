@@ -4,8 +4,6 @@ PetWatch is a full-stack web application I built to help users report, track, an
 
 One of the main things I focused on was performance. To make the map work smoothly even with **thousands of pet sighting entries**, I implemented **marker clustering** using Leaflet. Instead of rendering every marker individually, nearby sightings are grouped together dynamically, which keeps the map fast, responsive, and easy to navigate.
 
----
-
 ## Features
 
 * Report and track missing pets
@@ -14,8 +12,6 @@ One of the main things I focused on was performance. To make the map work smooth
 * Search and filtering functionality
 * User authentication and session management
 * Responsive UI design
-
----
 
 ## Tech Stack
 
