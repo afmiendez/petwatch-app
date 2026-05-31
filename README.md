@@ -15,7 +15,6 @@ One of the main things I focused on was performance. To make the map work smooth
 
 ## Tech Stack
 
-* ASP.NET / C#
 * SQL Server
 * HTML, CSS, JavaScript, Bootstrap
-* Leaflet.js + Marker Clustering
+* Leaflet.js
