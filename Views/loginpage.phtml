@@ -1,0 +1,44 @@
+<?php require("template/header.phtml") ?>
+
+<!-- Login form -->
+<div class="card rounded-4 mx-auto" style="width: 100%; max-width: 25rem;">
+
+    <div class="card-body p-4 p-md-5">
+
+        <form action="" method="POST">
+
+            <?php
+
+            if (isset($_SESSION["login"])) {
+                echo '
+                    <h2 class="card-title text-center fw-bold mb-4">Welcome back, '; echo $view->userLoggedIn->getUsername(); echo '</h2>
+                    <h5 class="card-title text-center mb-4">You are logged in.</h5>
+                    <div class="d-flex align-items-center gap-4">
+                        <input class="btn btn-primary m-auto w-100 mt-3" type="submit" name="logoutbutton" value="Logout">
+                    </div>';
+            } else {
+                echo '
+                    <h2 class="card-title text-center fw-bold mb-4">Sign in</h2>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        <label for="username">Username</label>
+                    </div>
+        
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        <label for="password">Password</label>
+                    </div>
+        
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary" name="loginbutton">Login</button>
+                    </div>';
+            }
+            ?>
+
+        </form>
+
+    </div>
+</div>
+
+<?php require('template/footer.phtml') ?>

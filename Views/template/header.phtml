@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+          crossorigin="anonymous">
+
+    <link href="/css/my-style.css" rel="stylesheet">
+
+    <title>PetWatch</title>
+</head>
+
+
+<body class="d-flex flex-column min-vh-100">
+
+<!--<body role=""document"> -->
+
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">PetWatch</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="missingpets.php">Missing Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sightings.php">Pet Sightings</a>
+                    </li>
+                    <?php
+
+                    if ($view->userLoggedIn) {
+
+                        if ($view->userLoggedIn->getRole() == "Owner") {
+                            echo '
+                            <li class="nav-item">
+                                <a class="nav-link" href="addpets.php">My Pets</a>
+                            </li>';
+                        }
+
+                    }
+                    ?>
+                </ul>
+                <?php
+
+                if ($view->userLoggedIn) {
+                    echo '
+                    <form method="post" action="loginpage.php" class="form">
+                        <div class="d-flex align-items-center gap-4">
+                            <p class="m-0 text-white">You are logged in, '; echo $view->userLoggedIn->getUsername(); echo '</p>
+                            <input class="btn btn-primary" type="submit" name="logoutbutton" value="Logout">
+                        </div>
+                    </form>';
+                } else {
+                    echo '
+                    <form method="post" action="loginpage.php" class="form">
+                        <div class="d-flex align-items-center gap-4">
+                            <input class="btn btn-primary" type="submit" value="Login">
+                        </div>
+                    </form>';
+                }
+                ?>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div id="containerDisplayMsg" class="container mt-3">
+    <?php
+    if (isset($_SESSION['display_error'])) {
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php echo $_SESSION['display_error']; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php
+        unset($_SESSION['display_error']);
+    } else if (isset($_SESSION['display_success'])) {
+        ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php echo $_SESSION['display_success']; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php
+        unset($_SESSION['display_success']);
+    }
+    ?>
+</div>
+
+<!-- Begin page content -->
+<main class="flex-grow-1">
+
+    <div class="container">
+        <div class="row">
+            <div id="title" class="col-xs-12">
+                <img src="images/new_uos_logo.jpg" alt="Salford University" />
+                <h1><?php echo $view->pageTitle ?> </h1>
+
+                <!-- https://getbootstrap.com/docs/5.2/examples/sticky-footer-navbar/ -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <section class="col-xs-6 col-sm-9 col-md-10 mx-auto">
+
+
+

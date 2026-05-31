@@ -1,0 +1,66 @@
+<?php require('template/header.phtml') ?>
+
+<!-- Create sighting form -->
+<div class="row mt-5">
+    <div class="col-xs-6 col-sm-8 col-md-8 mx-auto">
+        <div class="card rounded-4 mx-auto">
+            <div class="card-body p-5">
+
+                <?php if ($view->userLoggedIn) { ?>
+
+                    <h2 class="mb-4">Seen a missing pet? Report it below!</h2>
+
+                    <form method="POST" action="" class="form text-dark">
+
+                        <div class="mb-3">
+                            <label for="sightingPet">Missing pet:</label>
+                            <select class="form-select" id="sightingPet" name="sightingPet">
+                                <option value="">Select from the following list...</option>
+                                <?php foreach ($view->petsDataSet as $pet) {
+
+                                    if ($pet->getStatus() == "lost") {
+                                        echo '<option value="
+                                        ' . $pet->getId() . '">
+                                        ' . $pet->getName() . '
+                                         (' . $pet->getColor() . ') (Pet ID: ' . $pet->getId() . ')</option>';
+                                    }
+
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sightingComment">Comment:</label>
+                            <textarea required class="form-control" id="sightingComment" name="sightingComment" rows="5"></textarea>
+                        </div>
+                        <div class="d-flex align-items-center gap-5 mb-4">
+                            <div class="m-auto w-75">
+                                <label for="sightingLat">Location Latitude:</label>
+                                <input required class="form-control" type="number" id="sightingLat" name="sightingLat" step="any">
+                            </div>
+                            <div class="m-auto w-75">
+                                <label for="sightingLong">Location Longitude:</label>
+                                <input required class="form-control" type="number" id="sightingLong" name="sightingLong" step="any">
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" name="addsightingsbutton">Add missing pet</button>
+                        </div>
+
+                    </form>
+
+                <?php } else {?>
+
+                    <h2 class="mb-3">You are not logged-in.</h2>
+
+                <?php } ?>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<?php require('template/footer.phtml') ?>

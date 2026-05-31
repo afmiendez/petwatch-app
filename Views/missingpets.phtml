@@ -1,0 +1,85 @@
+<?php require('template/header.phtml') ?>
+
+<div class="row mb-4">
+    <form id="petsSearchForm" class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-3" role="search">
+        <div class="flex-grow-1">
+            <input id="searchBarInput"
+                   class="form-control w-100"
+                   type="search" name="searchinput"
+                   placeholder="Search for name, location, comments, etc..."
+                   aria-label="Search">
+        </div>
+        <div class="d-flex flex-wrap align-items-center justify-content-end gap-3">
+            <div class="d-flex align-items-center">
+                <label class="form-label mb-0 me-2" for="sortByLetters">Sort by</label>
+                <select class="form-select w-auto filter-select" name="sortByLetters">
+                    <option value="" >Any</option>
+                    <option value="ASC" >Sort by A-Z</option>
+                    <option value="DESC" >Sort by Z-A</option>
+                </select>
+            </div>
+            <div class="d-flex align-items-center">
+                <label class="form-label mb-0 me-2" for="sortByStatus">Pet Status</label>
+                <select class="form-select w-auto filter-select" name="sortByStatus">
+                    <option value="" >Any</option>
+                    <option value="lost" >Lost</option>
+                    <option value="found" >Found</option>
+                </select>
+            </div>
+            <button class="btn btn-success" name="searchbutton" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div id="petsContainer" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+</div>
+
+<nav id="petsPaginationNav">
+</nav>
+
+<div class="modal fade" id="sightingModal" tabindex="-1" aria-labelledby="sightingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4">
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title" id="sightingModalLabel">Report a sighting for <span id="selectedPetName"></span></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <?php if ($view->userLoggedIn) { ?>
+                    <form id="sightingsForm" class="form text-dark">
+                        <input type="hidden" id="sightingPetId" name="sightingPet">
+
+                        <div class="mb-3">
+                            <label for="sightingComment" class="form-label">Comment:</label>
+                            <textarea required class="form-control" id="sightingComment" name="sightingComment" rows="5"></textarea>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="sightingLat" class="form-label">Location Latitude:</label>
+                                <input required class="form-control" type="number" id="sightingLat" name="sightingLat" step="any">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="sightingLong" class="form-label">Location Longitude:</label>
+                                <input required class="form-control" type="number" id="sightingLong" name="sightingLong" step="any">
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" name="addsightingsbutton">Add missing pet</button>
+                        </div>
+                    </form>
+                <?php } else { ?>
+                    <div class="text-center p-4">
+                        <h2 class="mb-3">You are not logged-in.</h2>
+                        <p>Please log in to report a sighting.</p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/missingpetspagination.js"></script>
+
+<?php require('template/footer.phtml') ?>

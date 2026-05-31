@@ -1,0 +1,64 @@
+<?php require('template/header.phtml') ?>
+
+<!-- Edit pet form -->
+<div class="row">
+    <div class="col-xs-6 col-sm-8 col-md-8 mx-auto">
+        <div class="card rounded-4 mx-auto">
+            <div class="card-body p-5">
+
+                <?php if ($view->isCorrectUser) {
+                    echo '
+                    <h2 class="mb-3">Add new pet information</h2>
+                    <form method="POST" action="" class="form text-dark">
+
+                        <div class="mb-3">
+                            <label for="pName">Pet Name:</label>
+                            <input type="text" class="form-control" id="pName" name="pName" value="' . $view->petsDataRow->getName() . '">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pSpecies">Pet Species:</label>
+                            <input type="text" class="form-control" id="pSpecies" name="pSpecies" value="' . $view->petsDataRow->getSpecies() . '">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pBreed">Pet Breed:</label>
+                            <input type="text" class="form-control" id="pBreed" name="pBreed" value="' . $view->petsDataRow->getBreed() . '">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pColour">Pet Colour:</label>
+                            <input type="text" class="form-control" id="pColour" name="pColour" value="' . $view->petsDataRow->getColor() . '">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pImg">Pet Image:</label>
+                            <input type="file" class="form-control" id="pImg" name="pImg">
+                            <input type="hidden" name="existingImg" value="' . $view->petsDataRow->getPhotoUrl() . '">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pStatus">Pet Status:</label>
+                            <select class="form-select" id="pStatus" name="pStatus">
+                                <option value="Lost">Lost</option>
+                                <option '; if ($view->petsDataRow->getStatus() == "found") { echo "selected"; } echo ' value="Found">Found</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="pDesc">Pet Description:</label>
+                            <textarea class="form-control" id="pDesc" name="pDesc" rows="5">' . $view->petsDataRow->getDescription() . '</textarea>
+                        </div>
+    
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" name="editpetbutton">Save Changes</button>
+                        </div>
+    
+                    </form>
+                    ';
+                } else {
+                    echo '<h2 class="mb-3">You cannot edit this pet.</h2>';
+                }?>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<?php require('template/footer.phtml') ?>
