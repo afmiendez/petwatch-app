@@ -16,5 +16,5 @@ One of the main things I focused on was performance. To make the map work smooth
 ## Tech Stack
 
 * SQL Server
-* HTML, CSS, JavaScript, Bootstrap
+* PHP, HTML, CSS, JavaScript, Bootstrap
 * Leaflet.js
