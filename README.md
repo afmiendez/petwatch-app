@@ -19,6 +19,6 @@ One of the main things I focused on was performance. To make the map work smooth
 * PHP, HTML, CSS, JavaScript, Bootstrap
 * Leaflet.js
 
-<img width="1873" height="922" alt="image" src="https://github.com/user-attachments/assets/9bfc9718-f070-4529-92d9-c6ea1574a347" />
+![](clustering_example.gif)
 
 <img width="1876" height="921" alt="image" src="https://github.com/user-attachments/assets/f796ddac-a186-45a7-af6f-2a0db6a209b2" />
